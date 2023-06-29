@@ -42,7 +42,7 @@ def scan(site):
                        f.write(domain + "\n")
 
     except (requests.exceptions.RequestException, ValueError) as e:
-        print RED + "[-] " + RED + str(taz) + CYAN + str(i) + '.' + str(o) + RED + str(e)
+        print RED + "[-] " + RED + str(taz) + CYAN + str(i) + '.' + str(o) + RED + str(e) + WHITE
 
 
 site = open(raw_input(Fore.WHITE+'List:~# '),'r').read().replace(' ', '').splitlines()
