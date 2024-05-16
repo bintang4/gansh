@@ -30,8 +30,14 @@ nam = raw_input('List Ips: ')
 with open(nam) as f:
     for site in f:
      #try:
+        if 'AKIA' in site:
+         so = site.split("|")
+         scg(so)
+        elif 'smtp' in site:
          so = site.split("|")
          scgt(so)
+        else:
+         sct(site)
          #sct(site)
      #except:
             #pass
