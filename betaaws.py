@@ -11,7 +11,14 @@ init(autoreset=True)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-aws_access_key_pattern = re.compile(r'AKIA[0-9A-Z]{16}')
+aws_patterns = [
+r'"AKIA[A-Z0-9]{16}"',
+r'=AKIA[A-Z0-9]{16}',                                                     
+r':AKIA[A-Z0-9]{16}',
+r'= AKIA[A-Z0-9]{16}',                                                     
+r"'AKIA[A-Z0-9]{16}'",
+]
+aws_access_key_pattern = re.compile('|'.join(aws_patterns))
 REQUEST_TIMEOUT = 15
 
 def get_css_files(url):
