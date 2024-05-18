@@ -18,29 +18,6 @@ aws_patterns = [
 aws_access_key_pattern = re.compile('|'.join(aws_patterns))
 REQUEST_TIMEOUT = 15
 
-def get_css_files(url):
-    try:
-        response = requests.get(url, verify=False, timeout=REQUEST_TIMEOUT)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.text, 'html.parser')
-        script_tags = soup.find_all('script', src=True)
-        css_files = [tag['src'] for tag in script_tags if tag['src'].endswith('.css')]
-        return css_files
-    except requests.RequestException:
-        return []
-
-def scan_css_file(url, css_file_url):
-    try:
-        if not css_file_url.startswith('http'):
-            css_file_url = urljoin(url, css_file_url)
-        response = requests.get(css_file_url, verify=False, timeout=REQUEST_TIMEOUT)
-        response.raise_for_status()
-        if aws_access_key_pattern.search(response.text):
-            return js_file_url
-    except requests.RequestException:
-        return None
-    return None
-
 def get_js_files(url):
     try:
         response = requests.get(url, verify=False, timeout=REQUEST_TIMEOUT)
