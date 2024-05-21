@@ -13,7 +13,6 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 aws_patterns = [
  r'"AKIA[A-Z0-9]{16}"',
- r"'AKIA[A-Z0-9]{16}'",
 ]
 aws_access_key_pattern = re.compile('|'.join(aws_patterns))
 REQUEST_TIMEOUT = 15
@@ -43,12 +42,13 @@ def scan_js_file(url, js_file_url):
     return None
 
 def scan_website(url, result_file_lock):
-    if "://" in url:
+  if "://" in url:
         url = url
-    else:
+  else:
         url = "http://"+url
-    if url.endswith('/'):
+  if url.endswith('/'):
         url = url[:-1]
+  try:
     r = requests.get(url, timeout=10)
     js_files = get_js_files(r.url)
     found = False
@@ -61,11 +61,13 @@ def scan_website(url, result_file_lock):
                     output_file.write(result + '\n')
             found = True
     if not found:
-        print(Fore.RED + f"No AWS Access Key found in {url}")
+        print(Fore.RED + f"No AWS Access Key found in {url}" +Fore.WHITE)
+  except:
+      pass
 
 def main():
-    file_name = input("Masukkan nama file teks yang berisi daftar website: ").strip()
-    num_threads = int(input("Masukkan jumlah thread yang akan digunakan: ").strip())
+    file_name = input("list: ").strip()
+    num_threads = int(input("Thread: ").strip())
     
     try:
         with open(file_name, 'r') as file:
