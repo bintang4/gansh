@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 When  : 18/11/2015
@@ -79,7 +79,7 @@ def main(filename):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        filename = raw_input("Filename > ")
+        filename = input("Filename > ")
         main(filename)
     else:
         main(sys.argv[1])
