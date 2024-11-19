@@ -45,7 +45,7 @@ def main(filename):
     print("[+] Original File Size : %s" % Convsize(filename))
 
     start_time = timeit.default_timer()
-    content = [i.replace('\n', '') for i in open(filename).readlines()]
+    content = [i.replace('\n', '') for i in open(filename, errors="ignore").readlines()]
     # generates a list with the words inside wordlist without '\n'
     org_len = len(content)
 
